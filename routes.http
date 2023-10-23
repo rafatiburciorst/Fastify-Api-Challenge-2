@@ -1,0 +1,94 @@
+@baseUrl = http://localhost:3000
+@token = {{login.response.body.token}}
+
+# @name create-users
+POST {{baseUrl}}/users
+Content-Type: application/json
+
+{
+  "name": "Rafael Tiburcio",
+  "email": "example@example.com",
+  "password": "123456"
+}
+
+###
+
+# @name find-users
+GET {{baseUrl}}/users
+Content-Type: application/json
+
+###
+
+# @name login
+POST {{baseUrl}}/login
+Content-Type: application/json
+
+{
+  "email": "example@example.com",
+  "password": "123456"
+}
+
+###
+
+# @name profile
+GET {{baseUrl}}/me
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+###
+
+# @name create-food
+POST {{baseUrl}}/foods
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "name": "lanche",
+  "description": "carboidrato",
+  "diet": false
+}
+
+###
+
+# @name find-many-foods
+GET {{baseUrl}}/foods
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+###
+
+# @name update-food
+PUT {{baseUrl}}/foods/clo272css0001hzpmizfowd7e
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "name": "Maçã",
+  "description": "carboidrato",
+  "diet": false
+}
+
+###
+
+# @name delete-food
+DELETE {{baseUrl}}/foods/clo272css0001hzpmizfowd7e
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+###
+
+###
+
+# @name find-one-food
+GET {{baseUrl}}/foods/clo27wpaz0001hzup04fyhhta
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+###
+
+# @name stats-food
+GET {{baseUrl}}/foods/stats
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+###
