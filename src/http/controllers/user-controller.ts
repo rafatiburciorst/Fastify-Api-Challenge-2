@@ -33,20 +33,4 @@ export class UserController {
         }
     }
 
-
-    static async findMany(request: FastifyRequest, reply: FastifyReply) {
-        const users = await prisma.user.findMany()
-        
-        const data = users.map((user) => {
-            return {
-                ...user,
-                password: undefined
-            }
-        })
-
-        return {
-            data
-        }
-    }
-
 }

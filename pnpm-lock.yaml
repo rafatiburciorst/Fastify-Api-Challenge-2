@@ -20,6 +20,9 @@ dependencies:
   fastify:
     specifier: ^4.24.3
     version: 4.24.3
+  prisma-pagination-extension:
+    specifier: ^1.0.1
+    version: 1.0.1(prisma@5.4.2)
   zod:
     specifier: ^3.22.4
     version: 3.22.4
@@ -1139,6 +1142,14 @@ packages:
       ansi-styles: 5.2.0
       react-is: 18.2.0
     dev: true
+
+  /prisma-pagination-extension@1.0.1(prisma@5.4.2):
+    resolution: {integrity: sha512-1V8HQll+cBWasmKItrTgpFteWTKowflCeIOk2zbCDEUXi5LMGghMO/uQKWPQMlxH6uykWTxvO3cFC9VZ7fTwsA==}
+    dependencies:
+      '@prisma/client': 5.4.2(prisma@5.4.2)
+    transitivePeerDependencies:
+      - prisma
+    dev: false
 
   /prisma@5.4.2:
     resolution: {integrity: sha512-GDMZwZy7mysB2oXU+angQqJ90iaPFdD0rHaZNkn+dio5NRkGLmMqmXs31//tg/qXT3iB0cTQwnGGQNuirhSTZg==}

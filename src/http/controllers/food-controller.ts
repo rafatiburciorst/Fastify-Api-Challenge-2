@@ -31,14 +31,27 @@ export class FoodController {
     }
 
     static async findMany(request: FastifyRequest, reply: FastifyReply) {
-        const foods = await prisma.food.findMany({
+
+        const schema = z.object({
+            page: z.coerce.number().optional().default(1),
+            pageSize: z.coerce.number().optional().default(10)
+        })
+
+        const { page, pageSize } = schema.parse(request.query)
+        //@ts-ignore
+        const [foods, meta] = await prisma.food.paginate({
             where: {
                 userId: request.user.sub
-            }
+            },
+            pagination: {
+                page,
+                pageSize,
+            },
         })
 
         return reply.status(200).send({
-            foods
+            foods,
+            meta
         })
     }
 

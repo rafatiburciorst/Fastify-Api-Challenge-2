@@ -16,6 +16,7 @@ Content-Type: application/json
 # @name find-users
 GET {{baseUrl}}/users
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 ###
 
