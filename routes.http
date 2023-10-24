@@ -13,13 +13,6 @@ Content-Type: application/json
 
 ###
 
-# @name find-users
-GET {{baseUrl}}/users
-Content-Type: application/json
-Authorization: Bearer {{token}}
-
-###
-
 # @name login
 POST {{baseUrl}}/login
 Content-Type: application/json
@@ -44,15 +37,23 @@ Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-  "name": "lanche",
-  "description": "carboidrato",
-  "diet": false
+  "name": "Ovos",
+  "description": "Proteína/Carboidrato",
+  "diet": true,
+  "date": "{{$localDatetime iso8601}}"
 }
 
 ###
 
 # @name find-many-foods
 GET {{baseUrl}}/foods
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+###
+
+# @name find-best-foods
+GET {{baseUrl}}/foods/best
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
@@ -66,7 +67,8 @@ Authorization: Bearer {{token}}
 {
   "name": "Maçã",
   "description": "carboidrato",
-  "diet": false
+  "diet": false,
+  "date": "{{$localDatetime iso8601}}"
 }
 
 ###

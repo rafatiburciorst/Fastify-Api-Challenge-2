@@ -10,4 +10,5 @@ export async function foodRoutes(app: FastifyInstance) {
     app.delete('/foods/:id', {onRequest: [verifyToken]},FoodController.delete)
     app.get('/foods/:id', {onRequest: [verifyToken]},FoodController.findOne)
     app.get('/foods/stats', {onRequest: [verifyToken]},FoodController.stats)
+    app.get('/foods/best', {onRequest: [verifyToken]},FoodController.getBetterFoodSequence)
 }

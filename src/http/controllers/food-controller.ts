@@ -8,16 +8,15 @@ export class FoodController {
         const schema = z.object({
             name: z.string(),
             description: z.string(),
-            diet: z.coerce.boolean()
+            diet: z.coerce.boolean(),
+            date: z.coerce.date()
         })
 
-        const { description, diet, name } = schema.parse(request.body)
+        const data = schema.parse(request.body)
         try {
             await prisma.food.create({
                 data: {
-                    description,
-                    diet,
-                    name,
+                    ...data,
                     userId: request.user.sub
                 }
             })
@@ -60,7 +59,8 @@ export class FoodController {
         const schema = z.object({
             name: z.string().optional(),
             description: z.string().optional(),
-            diet: z.coerce.boolean().optional()
+            diet: z.coerce.boolean().optional(),
+            date: z.coerce.date()
         })
 
         const schemaParams = z.object({
@@ -81,16 +81,14 @@ export class FoodController {
             })
         }
 
-        const { description, diet, name } = schema.parse(request.body)
+        const data = schema.parse(request.body)
 
         await prisma.food.update({
             where: {
                 id,
             },
             data: {
-                description,
-                name,
-                diet
+                ...data
             }
         })
 
@@ -197,5 +195,20 @@ export class FoodController {
             inDiet,
             outInDiet
         })
+    }
+
+    static async getBetterFoodSequence(request: FastifyRequest, reply: FastifyReply) {
+        const foods = await prisma.food.count({
+            where: {
+                diet: true
+            }
+        })
+
+        return {
+            count: foods
+        }
+        // const best = foods.reduce((prev, next) => prev.date >= next.date ? prev : next)
+        // console.log(best);
+
     }
 }

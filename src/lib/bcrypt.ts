@@ -6,8 +6,6 @@ export async function encryptPassword(password: string) {
 }
 
 export async function decryptPassword(payload: string, password: string) {
-    console.log(payload, password);
-    
     const unhashedPassword = await compare(payload, password)
     return unhashedPassword
 }
